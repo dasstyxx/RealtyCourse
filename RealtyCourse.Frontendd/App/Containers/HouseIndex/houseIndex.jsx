@@ -10,37 +10,42 @@ import { SearchOutlined } from "@ant-design/icons";
 
 class HouseIndex extends React.Component {
     componentDidMount() {
-        this.props.getHouses();
+        this.props.getHouses(new Object());
     }
 
-    render() {
-        let housesInfo = this.props.housesInfo;
-        let isLoading = this.props.isLoading;
+    handleTableChange(pagination, filters, sorter) {
+        this.props.getHouses(pagination);
+    }
 
-        let columnsInfo = [
-            {
-                title: '№',
-                dataIndex: 'id',
-                key: 'id'
-            },
-            {
-                title: 'Дата публикации',
-                dataIndex: 'creationDateTime',
-                key: 'creationDateTime'
-            },
-            {
-                title: 'Адрес',
-                dataIndex: 'address',
-                key: 'address'
-            },
-            {
-                title: 'Действие',
-                key: 'action',
-                render: (text, record) => (
-                    <Link to={"/house/read/" + record.id}><SearchOutlined/> Перейти</Link>
-                )
-            }
-        ];
+    columnsInfo = [
+    {
+        title: '№',
+        dataIndex: 'id',
+        key: 'id'
+    },
+    {
+        title: 'Дата публикации',
+        dataIndex: 'creationDateTime',
+        key: 'creationDateTime'
+    },
+    {
+        title: 'Адрес',
+        dataIndex: 'address',
+        key: 'address'
+    },
+    {
+        title: 'Действие',
+        key: 'action',
+        render: (text, record) => (
+            <Link to={"/house/read/" + record.id}><SearchOutlined /> Перейти</Link>
+        )
+    }
+];
+
+    render() {
+        let housesInfo = this.props.housesInfo.map(item => ({...item, key: item.id}));
+        let isLoading = this.props.isLoading;
+        let totalCount = this.props.totalCount;
 
         return (
             <>
@@ -48,8 +53,10 @@ class HouseIndex extends React.Component {
 
                 <Table
                     dataSource={housesInfo}
-                    columns={columnsInfo}
+                    columns={this.columnsInfo}
                     loading={isLoading}
+                    pagination={{ total: totalCount }}
+                    onChange={this.handleTableChange.bind(this)}
                 />
             </>
         );
@@ -59,6 +66,7 @@ class HouseIndex extends React.Component {
 let mapStateToProps = (state) => {
     return {
         housesInfo: state.houseIndexReducer.housesInfo,
+        totalCount: state.houseIndexReducer.totalCount,
         error: state.houseIndexReducer.error,
         isLoading: state.houseIndexReducer.isLoading
     };
@@ -66,7 +74,7 @@ let mapStateToProps = (state) => {
 
 let mapActionsToProps = (dispatch) => {
     return {
-        getHouses: () => dispatch(getHouses())
+        getHouses: (pagination) => dispatch(getHouses(pagination))
     };
 };
 

@@ -21,12 +21,26 @@ namespace RealtyCourse.Frontend.Controllers
 
         [Route("getall")]
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int? page, int? pageSize)
         {
-            List<House> houses = _houseRepository.GetAllWithoutTracking()
+            int targetPage = page.GetValueOrDefault(1);
+            int targetPageSize = pageSize.GetValueOrDefault(10);
+
+            IQueryable<House> allEntities = _houseRepository.GetAllWithoutTracking();
+            int totalCount = allEntities.Count();
+
+            int skipPages = (targetPage - 1) * targetPageSize;
+            //if (skipPages > totalCount)
+            //{
+            //    return NotFound("Page is not found!");
+            //}
+
+            List<House> housesInfo = allEntities
+                .Skip(skipPages)
+                .Take(targetPageSize)
                 .ToList();
 
-            return Json(houses);
+            return Json(new { housesInfo, totalCount });
         }
 
         [Route("get")]
