@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>RealtyCourse.Frontendd.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
+    <PackageReference Include="Rimutec.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RealtyCourse.Business\RealtyCourse.Business.csproj" />
+    <ProjectReference Include="..\RealtyCourse.DAL\RealtyCourse.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
