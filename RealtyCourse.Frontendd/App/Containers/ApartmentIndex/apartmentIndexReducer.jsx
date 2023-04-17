@@ -6,7 +6,7 @@
 
 const initialState = {
     apartmentsInfo: [
-        { id: 1, houseId: 1, floor: null, roomAmount: null, price: null, livingSpace: null }
+        { id: 1, houseId: 1, floor: null, roomAmount: null, price: null, livingSquare: null }
     ],
     isLoading: false,
     error: null

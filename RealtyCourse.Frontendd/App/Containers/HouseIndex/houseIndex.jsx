@@ -43,15 +43,15 @@ class HouseIndex extends React.Component {
         ];
 
         return (
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <h3>Houses list</h3>
+            <>
+                <h3>Список домов</h3>
 
                 <Table
                     dataSource={housesInfo}
                     columns={columnsInfo}
                     loading={isLoading}
                 />
-            </div>
+            </>
         );
     }
 };

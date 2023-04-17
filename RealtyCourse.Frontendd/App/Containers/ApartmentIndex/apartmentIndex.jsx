@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { getApartments } from './apartmentIndexActions.jsx';
 
+import { Link } from 'react-router-dom';
+
+import { Table, Spin } from 'antd';
+import { SearchOutlined } from "@ant-design/icons";
+
 class ApartmentIndex extends React.Component {
     componentDidMount() {
         this.props.getApartments();
@@ -12,34 +17,58 @@ class ApartmentIndex extends React.Component {
         let apartmentsInfo = this.props.apartmentsInfo;
         let isLoading = this.props.isLoading;
 
-        if (isLoading) {
-            return (<div style={{ textAlign: "center", marginTop: "20px" }}>
-                Loading data...
-            </div>);
-        }
+        let columnsInfo = [
+            {
+                title: '№',
+                dataIndex: 'id',
+                key: 'id'
+            },
+            {
+                title: 'Дата публикации',
+                dataIndex: 'creationDateTime',
+                key: 'creationDateTime'
+            },
+            {
+                title: 'Жилая площадь',
+                dataIndex: 'livingSquare',
+                key: 'livingSquare'
+            },
+            {
+                title: 'Этажность',
+                dataIndex: 'creationDateTime',
+                key: 'creationDateTime'
+            },
+            {
+                title: 'Стоимость',
+                dataIndex: 'price',
+                key: 'price'
+            },
+            {
+                title: 'Дом',
+                key: 'action',
+                render: (text, record) => (
+                    <Link to={"/house/read/" + record.houseId}><SearchOutlined /> Перейти</Link>
+                )
+            },
+            {
+                title: 'Квартира',
+                key: 'action',
+                render: (text, record) => (
+                    <Link to={"/apartment/read/" + record.id}><SearchOutlined /> Перейти</Link>
+                )
+            }
+        ];
 
         return (
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <h3>Apartments list</h3>
+            <>
+                <h3>Список квартир</h3>
 
-                <table style={{ width: "80%", marginLeft: "auto", marginRight: "auto", backgroundColor: "lightgray" }}>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Price</th>
-                            <th>House ID</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {apartmentsInfo.map(apartment =>
-                        (<tr key={apartment.id}>
-                            <td>{apartment.id}</td>
-                            <td>{apartment.price} ₽</td>
-                            <td>{apartment.houseId}</td>
-                        </tr>))}
-                    </tbody>
-                </table>
-            </div>
+                <Table
+                    dataSource={apartmentsInfo}
+                    columns={columnsInfo}
+                    loading={isLoading}
+                />
+            </>
         );
     }
 };
