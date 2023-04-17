@@ -45,7 +45,7 @@ class ApartmentRead extends React.Component {
                             <Descriptions.Item label="ID">{apartmentInfo.houseId}</Descriptions.Item>
                             <Descriptions.Item label="Дата публикации">{apartmentInfo.creationDateTime}</Descriptions.Item>
                             <Descriptions.Item label="Стоимость" span={2}>{apartmentInfo.price}</Descriptions.Item>
-                            <Descriptions.Item label="Жилая площадь">{apartmentInfo.floor}</Descriptions.Item>
+                            <Descriptions.Item label="Жилая площадь">{apartmentInfo.livingSpace}</Descriptions.Item>
                             <Descriptions.Item label="Этаж">{apartmentInfo.floor}</Descriptions.Item>
                         </Descriptions>
                     </Col>
