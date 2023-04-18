@@ -5,7 +5,7 @@
 } from './apartmentReadConstants.jsx';
 
 const initialState = {
-    apartmentInfo: { id: 1, houseId: 1, floor: null, roomAmount: null, price: null, livingSpace: null },
+    apartmentInfo: { id: 1, houseId: 1, floor: null, roomAmount: null, price: null, livingSpace: null, imageName: null },
     isLoading: false,
     error: null
 };

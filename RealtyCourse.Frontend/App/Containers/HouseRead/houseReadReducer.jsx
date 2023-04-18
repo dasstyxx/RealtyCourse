@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     houseInfo: {
-        id: 1, address: null, buildYear: null, wallMaterial: null, maxFloor: null
+        id: 1, address: null, buildYear: null, wallMaterial: null, maxFloor: null, imageName: null
     },
     isLoading: false,
     error: null

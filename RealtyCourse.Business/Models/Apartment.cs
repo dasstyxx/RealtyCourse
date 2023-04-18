@@ -7,5 +7,6 @@
         public double? Price { get; set; }
         public int? RoomAmount { get; set; }
         public double? LivingSquare { get; set; }
+        public string ImageName { get; set; }
     }
 }

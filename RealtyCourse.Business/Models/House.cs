@@ -6,5 +6,6 @@
         public int? MaxFloor { get; set; }
         public int? BuildYear { get; set; }
         public string WallMaterial { get; set; }
+        public string ImageName { get; set; }
     }
 }

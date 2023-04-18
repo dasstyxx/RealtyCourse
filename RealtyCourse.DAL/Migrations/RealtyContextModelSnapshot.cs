@@ -35,6 +35,9 @@ namespace RealtyCourse.DAL.Migrations
                     b.Property<int>("HouseId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double?>("LivingSquare")
                         .HasColumnType("float");
 
@@ -64,6 +67,9 @@ namespace RealtyCourse.DAL.Migrations
 
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MaxFloor")
                         .HasColumnType("int");

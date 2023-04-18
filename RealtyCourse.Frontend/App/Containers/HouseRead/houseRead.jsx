@@ -31,17 +31,18 @@ class HouseRead extends React.Component {
                 <div>Error in data loading occured: {error}</div>
             );
         }
-        
+
+        let image_span = 12
         return (
             <div>
-                <Divider orientation="center">Инофрмация о доме</Divider>
+                <Divider orientation="center"><img key="apartment_logo" width={32} height={32} src="/images/home.png" /> Инофрмация о доме</Divider>
 
-                <Row>
-                    <Col span={4}>
-                        <img key="house_logo" width={160} height={160} src="/images/home.png"></img>
+                <Row style={{ marginTop: "80px" }}>
+                    <Col span={image_span}>
+                        <img key="house_image" max-width="100%" max-height="100%" src={"/images/houses/" + houseInfo.imageName + ".jpg"} />
                     </Col>
-                    <Col span={20}>
-                        <Descriptions bordered column={2}>
+                    <Col span={24 - image_span}>
+                        <Descriptions column={1} title="Информация" bordered size="medium">
                             <Descriptions.Item label="ID">{houseInfo.id}</Descriptions.Item>
                             <Descriptions.Item label="Дата публикации">{houseInfo.creationDateTime}</Descriptions.Item>
                             <Descriptions.Item label="Адрес" span={2}>{houseInfo.address}</Descriptions.Item>

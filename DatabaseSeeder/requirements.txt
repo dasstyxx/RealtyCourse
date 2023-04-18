@@ -1,0 +1,5 @@
+SQLAlchemy
+pyodbc
+Pillow
+sqlacodegen==3.0.0b2
+Faker

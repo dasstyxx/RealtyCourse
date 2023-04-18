@@ -32,20 +32,20 @@ class ApartmentRead extends React.Component {
             );
         }
 
+        let image_span = 12
         return (
             <div>
-                <Divider orientation="center">Информация о квартире</Divider>
-
-                <Row>
-                    <Col span={4}>
-                        <img key="apartment_logo" width={160} height={160} src="/images/interior-design.png"></img>
+                <Divider orientation="center"><img key="apartment_logo" width={32} height={32} src="/images/interior-design.png" /> Информация о квартире</Divider>
+                <Row style={{ marginTop: "80px" }}>
+                    <Col span={image_span}>
+                        <img key="apartment_image" max-width="100%" max-height="100%" src={"/images/apartments/" + apartmentInfo.imageName + ".jpg"} />
                     </Col>
-                    <Col span={20}>
-                        <Descriptions bordered column={2}>
+                    <Col span={24 - image_span}>
+                        <Descriptions column={1} title="Информация" bordered size="medium">
                             <Descriptions.Item label="ID">{apartmentInfo.id}</Descriptions.Item>
                             <Descriptions.Item label="Дата публикации">{apartmentInfo.creationDateTime}</Descriptions.Item>
-                            <Descriptions.Item label="Стоимость" span={2}>{apartmentInfo.price}</Descriptions.Item>
-                            <Descriptions.Item label="Жилая площадь">{apartmentInfo.livingSpace}</Descriptions.Item>
+                            <Descriptions.Item label="Стоимость">{apartmentInfo.price} ₽</Descriptions.Item>
+                            <Descriptions.Item label="Жилая площадь">{apartmentInfo.livingSquare}</Descriptions.Item>
                             <Descriptions.Item label="Этаж">{apartmentInfo.floor}</Descriptions.Item>
                         </Descriptions>
                     </Col>
