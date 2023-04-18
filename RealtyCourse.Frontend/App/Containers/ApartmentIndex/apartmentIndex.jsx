@@ -34,25 +34,27 @@ class ApartmentIndex extends React.Component {
             key: 'livingSquare'
         },
         {
-            title: 'Этажность',
-            dataIndex: 'creationDateTime',
-            key: 'creationDateTime'
+            title: 'Этаж',
+            dataIndex: 'floor',
+            key: 'floor'
         },
         {
             title: 'Стоимость',
-            dataIndex: 'price',
-            key: 'price'
+            key: 'price',
+            render: (text, record) => (
+                <div>{record.price} ₽</div>
+            )
         },
         {
             title: 'Дом',
-            key: 'action',
+            key: 'house_action',
             render: (text, record) => (
                 <Link to={"/house/read/" + record.houseId}><SearchOutlined /> Перейти</Link>
             )
         },
         {
             title: 'Квартира',
-            key: 'action',
+            key: 'apartment_action',
             render: (text, record) => (
                 <Link to={"/apartment/read/" + record.id}><SearchOutlined /> Перейти</Link>
             )
