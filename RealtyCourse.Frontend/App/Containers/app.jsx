@@ -7,7 +7,7 @@ import ApartmentIndex from './ApartmentIndex/apartmentIndex.jsx';
 import ApartmentRead from './ApartmentRead/apartmentRead.jsx';
 
 import { Layout } from 'antd';
-import Header from './Header/header.jsx';
+import SideBar from './SideBar/sideBar.jsx';
 const { Content, Footer } = Layout;
 
 export default class App extends React.Component {
@@ -15,7 +15,7 @@ export default class App extends React.Component {
         return (
             <Router>
                 <Layout style={{ minHeight: '100vh' }}>
-                    <Header/>
+                    <SideBar/>
 
                     <Layout className="site-layout">
                         <Content style={{margin: "0 16px"} }>
