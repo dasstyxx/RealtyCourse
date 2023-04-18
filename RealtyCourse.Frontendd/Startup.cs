@@ -24,7 +24,11 @@ namespace RealtyCourse.Frontendd
         {
             var connectionString = _configuration.GetConnectionString("RealtyContext");
 
-            services.AddDbContext<RealtyContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<RealtyContext>(options =>
+            {
+                options.UseSqlServer(connectionString,
+                assembly => assembly.MigrationsAssembly("RealtyCourse.DAL"));
+            });
             services.AddScoped(typeof(GenericRepository<,>));
             services.AddMvc();
         }
