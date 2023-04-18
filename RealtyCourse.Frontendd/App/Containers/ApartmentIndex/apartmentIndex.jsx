@@ -10,54 +10,59 @@ import { SearchOutlined } from "@ant-design/icons";
 
 class ApartmentIndex extends React.Component {
     componentDidMount() {
-        this.props.getApartments();
+        this.props.getApartments(new Object());
     }
 
-    render() {
-        let apartmentsInfo = this.props.apartmentsInfo;
-        let isLoading = this.props.isLoading;
+    handleTableChange(pagination, filters, sorter) {
+        this.props.getApartments(pagination);
+    }
 
-        let columnsInfo = [
-            {
-                title: '№',
-                dataIndex: 'id',
-                key: 'id'
-            },
-            {
-                title: 'Дата публикации',
-                dataIndex: 'creationDateTime',
-                key: 'creationDateTime'
-            },
-            {
-                title: 'Жилая площадь',
-                dataIndex: 'livingSquare',
-                key: 'livingSquare'
-            },
-            {
-                title: 'Этажность',
-                dataIndex: 'creationDateTime',
-                key: 'creationDateTime'
-            },
-            {
-                title: 'Стоимость',
-                dataIndex: 'price',
-                key: 'price'
-            },
-            {
-                title: 'Дом',
-                key: 'action',
-                render: (text, record) => (
-                    <Link to={"/house/read/" + record.houseId}><SearchOutlined /> Перейти</Link>
-                )
-            },
-            {
-                title: 'Квартира',
-                key: 'action',
-                render: (text, record) => (
-                    <Link to={"/apartment/read/" + record.id}><SearchOutlined /> Перейти</Link>
-                )
-            }
-        ];
+    columnsInfo = [
+        {
+            title: '№',
+            dataIndex: 'id',
+            key: 'id'
+        },
+        {
+            title: 'Дата публикации',
+            dataIndex: 'creationDateTime',
+            key: 'creationDateTime'
+        },
+        {
+            title: 'Жилая площадь',
+            dataIndex: 'livingSquare',
+            key: 'livingSquare'
+        },
+        {
+            title: 'Этажность',
+            dataIndex: 'creationDateTime',
+            key: 'creationDateTime'
+        },
+        {
+            title: 'Стоимость',
+            dataIndex: 'price',
+            key: 'price'
+        },
+        {
+            title: 'Дом',
+            key: 'action',
+            render: (text, record) => (
+                <Link to={"/house/read/" + record.houseId}><SearchOutlined /> Перейти</Link>
+            )
+        },
+        {
+            title: 'Квартира',
+            key: 'action',
+            render: (text, record) => (
+                <Link to={"/apartment/read/" + record.id}><SearchOutlined /> Перейти</Link>
+            )
+        }
+    ];
+
+    render() {
+        let apartmentsInfo = this.props.apartmentsInfo.map(item => ({ ...item, key: item.id }));
+        let isLoading = this.props.isLoading;
+        let totalCount = this.props.totalCount;
 
         return (
             <>
@@ -65,8 +70,10 @@ class ApartmentIndex extends React.Component {
 
                 <Table
                     dataSource={apartmentsInfo}
-                    columns={columnsInfo}
+                    columns={this.columnsInfo}
                     loading={isLoading}
+                    pagination={{ total: totalCount }}
+                    onChange={this.handleTableChange.bind(this)}
                 />
             </>
         );
@@ -75,13 +82,16 @@ class ApartmentIndex extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        apartmentsInfo: state.apartmentIndexReducer.apartmentsInfo
+        apartmentsInfo: state.apartmentIndexReducer.apartmentsInfo,
+        totalCount: state.apartmentIndexReducer.totalCount,
+        error: state.apartmentIndexReducer.error,
+        isLoading: state.apartmentIndexReducer.isLoading
     };
 };
 
 let mapActionsToProps = (dispatch) => {
     return {
-        getApartments: () => dispatch(getApartments())
+        getApartments: (pagination) => dispatch(getApartments(pagination))
     };
 };
 
