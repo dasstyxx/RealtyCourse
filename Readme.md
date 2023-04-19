@@ -1,6 +1,6 @@
 # SPA реестр фейковых квартир на продажу
 
-## Стек:
+## Стек
 - .NET Core 3.1
 - EF 5
 - react
@@ -20,12 +20,14 @@ python -m generate_data.py "строка подключения вида mssql+p
 ```
 
 
-## Локально применяем миграции через команды:
+## Локально применяем миграции через команды
 ```powershell
 dotnet ef migrations add имя_миграции -c RealtyContext --project ..\RealtyCourse.DAL
 dotnet ef database update -c RealtyContext --project ..\RealtyCourse.DAL
 ```
 
-* Все картинки домов и квартир сгенерированы нейросетью.
+-----
+</br>
+Все картинки домов и квартир сгенерированы нейросетью.
 ![квартира](media/img1.png)
 ![таблица](media/img2.png)
