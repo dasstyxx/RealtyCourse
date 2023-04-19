@@ -9,8 +9,23 @@
 - Ant Design
 
 
-## Локаольно применяем миграции через команды:
+## Заполняем базу данных новыми фейковыми данными с картинками
+Переходим в проект DatabaseSeeder, добавляем свои картинки по необходимости.
+Запускаем команду
+```
+python -m venv venv
+.\venv\Scripts\activate.bat
+pip install -r requirements.txt
+python -m generate_data.py "строка подключения вида mssql+pyodbc://" "абсолютный путь к папке RealtyCourse.Frontend\wwwroot\images"
+```
+
+
+## Локально применяем миграции через команды:
 ```powershell
 dotnet ef migrations add имя_миграции -c RealtyContext --project ..\RealtyCourse.DAL
 dotnet ef database update -c RealtyContext --project ..\RealtyCourse.DAL
 ```
+
+* Все картинки домов и квартир сгенерированы нейросетью.
+![квартира](media/img1.png)
+![таблица](media/img2.png)
