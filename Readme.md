@@ -29,6 +29,6 @@ dotnet ef database update -c RealtyContext --project ..\RealtyCourse.DAL
 -----
 </br>
 
-Все картинки домов и квартир сгенерированы нейросетью.
 ![квартира](media/img1.png)
 ![таблица](media/img2.png)
+###### Все картинки домов и квартир сгенерированы нейросетью.
