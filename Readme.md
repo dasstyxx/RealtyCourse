@@ -3,6 +3,7 @@
 ## Стек
 - .NET Core 3.1
 - EF 5
+- Rimutec.AspNetCore.SpaServices.Extensions
 - react
 - react-redux
 - redux-thunk
